@@ -5,7 +5,7 @@ Summary:	Control Gdb from inside Vim
 Summary(pl):	Obs³uga gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Editors/Vim
 #Source0:	http://vim.sourceforge.net/scripts/download.php?src_id=428
@@ -46,7 +46,8 @@ jest w górnym oknie, a dane s± wy¶wietlane w dolnym.
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}" \
+	LDBIN="%{__cc}" \
+	CFLAGS="%{rpmcflags} -fPIC" \
 	VIM_VERSION="%{vimshv}"
 
 %install
