@@ -1,24 +1,27 @@
+%define vimver	6.1
+%define	vimnver	6.2
 Summary:	Control Gdb from inside Vim
 Summary(pl):	Obs³uga gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Editors/Vim
 #Source0:	http://vim.sourceforge.net/scripts/download.php?src_id=428
 Source0:	idevim.tgz
 Patch0:		%{name}-Makefile.patch
 URL:		http://vim.sourceforge.net/scripts/script.php?script_id=168
-BuildRequires:	vim >= 6.0
-BuildConflicts:	vim >= 6.1
-Requires:	vim >= 6.0
-Conflicts:	vim >= 6.1
+BuildRequires:	vim >= %{vimver}
+BuildConflicts:	vim >= %{vimnver}
+Requires:	vim >= %{vimver}
+Conflicts:	vim >= %{vimnver}
 Requires:	gdb
-Requires(postun):	vim >= 6.0
-Requires(post):	vim >= 6.0
+Requires(postun):	vim >= %{vimver}
+Requires(post):	vim >= %{vimver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_vimdatadir	%{_datadir}/vim/vim60
+%define		vimshv		%(echo %{vimver} | tr -d .)
+%define		_vimdatadir	%{_datadir}/vim/vim%{vimshv}
 
 %description
 This is plugin and library which turns Vim into the best Ide in the
@@ -37,20 +40,23 @@ jest w górnym oknie, a dane s± wy¶wietlane w dolnym.
 %patch0 -p1
 
 %build
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} \
+	CFLAGS="%{rpmcflags}" \
+	VIM_VERSION="%{vimshv}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	VIM_VERSION="%{vimshv}"
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pre -p /sbin/ldconfig
-
 %post
+/sbin/ldconfig
 echo ':helptags %{_vimdatadir}/doc' | vim -e -s
 
 %postun
