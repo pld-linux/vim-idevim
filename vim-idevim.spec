@@ -9,6 +9,7 @@ License:	GPL
 Group:		Applications/Editors/Vim
 #Source0:	http://vim.sourceforge.net/scripts/download.php?src_id=428
 Source0:	idevim.tgz
+# Source0-md5:	b63be71c432a7b67db75dde0afaaefc3
 Patch0:		%{name}-Makefile.patch
 URL:		http://vim.sourceforge.net/scripts/script.php?script_id=168
 BuildRequires:	vim >= %{vimver}
