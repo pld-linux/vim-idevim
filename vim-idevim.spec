@@ -34,8 +34,8 @@ the top window, while the data appears in the bottom.
 
 %description -l pl
 To jest wtyczka i biblioteka, które zmieniaj± VIMa w najlepszy IDE na
-¶wiecie. :-) Daj± one dostêp do wszystkuch funkcji Gdb. Podczas pracy
-debuggera okno jest podzielone: aktualna linia kodu ¼ród³oweo pokazana
+¶wiecie. :-) Daj± one dostêp do wszystkich funkcji Gdb. Podczas pracy
+debuggera okno jest podzielone: aktualna linia kodu ¼ród³owego pokazana
 jest w górnym oknie, a dane s± wy¶wietlane w dolnym.
 
 %prep
