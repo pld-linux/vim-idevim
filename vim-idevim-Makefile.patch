@@ -1,0 +1,50 @@
+diff -durN gdbvim.orig/Makefile gdbvim/Makefile
+--- gdbvim.orig/Makefile	Sat Nov 24 20:26:26 2001
++++ gdbvim/Makefile	Wed Mar 13 14:38:16 2002
+@@ -1,5 +1,6 @@
+ # Hack for the sort problem
+-export LC_ALL := c
++VIM_VERSION=60
++export LC_ALL := C
+ 
+ CC    := gcc
+ CFLAGS := -g
+@@ -8,7 +9,7 @@
+ INSTALL := /usr/bin/install
+ 
+ 
+-all: gdbvserv gdbvcl tags  install
++all: gdbvserv gdbvcl tags
+ 
+ common.o: common.c 
+ 	$(CC) $(CFLAGS) -c common.c
+@@ -62,19 +63,22 @@
+ 	
+ 
+ gtk_install: gtk
+-	$(INSTALL) libvimgdb_gtk.so /usr/lib
++	$(INSTALL) libvimgdb_gtk.so $(DESTDIR)/usr/lib
+ 
+ installbin: gdbvserv gdbvcl libvimgdb.so
+-	$(INSTALL) gdbvserv /usr/bin
+-	$(INSTALL) gdbvcl /usr/bin
+-	$(INSTALL) libvimgdb.so /usr/lib
++	$(INSTALL) -d $(DESTDIR)/usr/bin
++	$(INSTALL) gdbvserv $(DESTDIR)/usr/bin
++	$(INSTALL) gdbvcl $(DESTDIR)/usr/bin
++	$(INSTALL) -d $(DESTDIR)/usr/lib
++	$(INSTALL) libvimgdb.so $(DESTDIR)/usr/lib
+ 
+ ifneq ("$(VIM_VERSION)", "")
+ VIMDIR = $(VIMBASE)/vim$(VIM_VERSION)
+ installdoc: ide.txt tags ide.vim
+-	$(INSTALL) -m 0644 ide.txt $(VIMDIR)/doc/
+-	sort -o $(VIMDIR)/doc/tags $(VIMDIR)/doc/tags tags
+-	$(INSTALL) ide.vim  $(VIMDIR)/plugin/
++	$(INSTALL) -d $(DESTDIR)$(VIMDIR)/doc/
++	$(INSTALL) -m 0644 ide.txt $(DESTDIR)$(VIMDIR)/doc/
++	$(INSTALL) -d $(DESTDIR)$(VIMDIR)/plugin/
++	$(INSTALL) ide.vim $(DESTDIR)$(VIMDIR)/plugin/
+ else
+ installdoc:;@echo 
+ 	@echo Please Set VIM_VERSION to the version of vim \(eg. 60\)
