@@ -1,10 +1,10 @@
-%define vimver	6.1
-%define	vimnver	6.2
+%define vimver	6.2
+%define	vimnver	6.3
 Summary:	Control Gdb from inside Vim
 Summary(pl):	Obs³uga gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Editors/Vim
 #Source0:	http://vim.sourceforge.net/scripts/download.php?src_id=428
