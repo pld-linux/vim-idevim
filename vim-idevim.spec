@@ -5,7 +5,7 @@ Summary:	Control Gdb from inside Vim
 Summary(pl):	Obs³uga gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/Editors/Vim
 #Source0:	http://vim.sourceforge.net/scripts/download.php?src_id=428
@@ -55,6 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	LIBDIR=%{_libdir} \
 	VIM_VERSION="%{vimshv}"
 
 %clean
