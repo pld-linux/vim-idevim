@@ -12,14 +12,15 @@ Group:		Applications/Editors/Vim
 Source0:	idevim.tgz
 # Source0-md5:	b63be71c432a7b67db75dde0afaaefc3
 Patch0:		%{name}-Makefile.patch
+Patch1:		%{name}-posix.patch
 URL:		http://vim.sourceforge.net/scripts/script.php?script_id=168
 BuildRequires:	vim >= %{vimepoch}:%{vimver}
 BuildConflicts:	vim >= %{vimepoch}:%{vimnver}
+Requires(post,postun):	/sbin/ldconfig
+Requires(post,postun):	vim >= %{vimepoch}:%{vimver}
 Requires:	vim >= %{vimepoch}:%{vimver}
-Conflicts:	vim >= %{vimepoch}:%{vimnver}
 Requires:	gdb
-Requires(postun):	vim >= %{vimepoch}:%{vimver}
-Requires(post):	vim >= %{vimepoch}:%{vimver}
+Conflicts:	vim >= %{vimepoch}:%{vimnver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		vimshv		%(echo %{vimver} | tr -d .)
@@ -40,15 +41,16 @@ jest w górnym oknie, a dane s± wy¶wietlane w dolnym.
 %prep
 %setup -qn gdbvim
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} \
+	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}" \
 	VIM_VERSION="%{vimshv}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -68,6 +70,6 @@ echo ':helptags %{_vimdatadir}/doc' | vim -e -s
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/*
+%attr(755,root,root) %{_libdir}/*.so
 %{_vimdatadir}/doc/*
 %{_vimdatadir}/plugin/*
