@@ -1,15 +1,16 @@
 diff -durN gdbvim.orig/Makefile gdbvim/Makefile
 --- gdbvim.orig/Makefile	Sat Nov 24 20:26:26 2001
 +++ gdbvim/Makefile	Wed Mar 13 14:38:16 2002
-@@ -1,5 +1,6 @@
+@@ -1,5 +1,7 @@
  # Hack for the sort problem
 -export LC_ALL := c
 +VIM_VERSION=60
 +export LC_ALL := C
++LIBDIR=/usr/lib
  
  CC    := gcc
  CFLAGS := -g
-@@ -8,7 +9,7 @@
+@@ -8,7 +10,7 @@
  INSTALL := /usr/bin/install
  
  
@@ -18,12 +19,12 @@ diff -durN gdbvim.orig/Makefile gdbvim/Makefile
  
  common.o: common.c 
  	$(CC) $(CFLAGS) -c common.c
-@@ -62,19 +63,22 @@
+@@ -62,19 +64,22 @@
  	
  
  gtk_install: gtk
 -	$(INSTALL) libvimgdb_gtk.so /usr/lib
-+	$(INSTALL) libvimgdb_gtk.so $(DESTDIR)/usr/lib
++	$(INSTALL) libvimgdb_gtk.so $(DESTDIR)$(LIBDIR)
  
  installbin: gdbvserv gdbvcl libvimgdb.so
 -	$(INSTALL) gdbvserv /usr/bin
@@ -32,8 +33,8 @@ diff -durN gdbvim.orig/Makefile gdbvim/Makefile
 +	$(INSTALL) -d $(DESTDIR)/usr/bin
 +	$(INSTALL) gdbvserv $(DESTDIR)/usr/bin
 +	$(INSTALL) gdbvcl $(DESTDIR)/usr/bin
-+	$(INSTALL) -d $(DESTDIR)/usr/lib
-+	$(INSTALL) libvimgdb.so $(DESTDIR)/usr/lib
++	$(INSTALL) -d $(DESTDIR)$(LIBDIR)
++	$(INSTALL) libvimgdb.so $(DESTDIR)$(LIBDIR)
  
  ifneq ("$(VIM_VERSION)", "")
  VIMDIR = $(VIMBASE)/vim$(VIM_VERSION)
