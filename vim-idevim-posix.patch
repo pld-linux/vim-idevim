@@ -1,0 +1,11 @@
+--- gdbvim/Makefile.orig	2004-04-09 16:42:18.000000000 +0200
++++ gdbvim/Makefile	2004-04-09 16:44:13.100455272 +0200
+@@ -49,7 +49,7 @@
+ 
+ tags: doctags
+ 	./doctags ide.txt > tags.tmp
+-	uniq -u -2 tags.tmp tags 
++	uniq -u -f 2 tags.tmp tags 
+ 
+ doctags: doctags.c
+ 	$(CC) doctags.c -o doctags
