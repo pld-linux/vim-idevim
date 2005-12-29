@@ -1,11 +1,8 @@
-%define vimver		6.3
-%define	vimnver		6.4
-%define vimepoch	4
 Summary:	Control Gdb from inside Vim
 Summary(pl):	Obs³uga gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications/Editors/Vim
 #Source0:	http://vim.sourceforge.net/scripts/download.php?src_id=428
@@ -14,17 +11,14 @@ Source0:	idevim.tgz
 Patch0:		%{name}-Makefile.patch
 Patch1:		%{name}-posix.patch
 URL:		http://vim.sourceforge.net/scripts/script.php?script_id=168
-BuildRequires:	vim >= %{vimepoch}:%{vimver}
-BuildConflicts:	vim >= %{vimepoch}:%{vimnver}
 Requires(post,postun):	/sbin/ldconfig
-Requires(post,postun):	vim >= %{vimepoch}:%{vimver}
-Requires:	vim >= %{vimepoch}:%{vimver}
+Requires(post,postun):	vim
+# for _vimdatadir existence
+Requires:	vim >= 4:6.3.058-3
 Requires:	gdb
-Conflicts:	vim >= %{vimepoch}:%{vimnver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		vimshv		%(echo %{vimver} | tr -d .)
-%define		_vimdatadir	%{_datadir}/vim/vim%{vimshv}
+%define		_vimdatadir	%{_datadir}/vim/vimfiles
 
 %description
 This is plugin and library which turns Vim into the best Ide in the
@@ -47,8 +41,7 @@ jest w górnym oknie, a dane s± wy¶wietlane w dolnym.
 %{__make} \
 	CC="%{__cc}" \
 	LDBIN="%{__cc}" \
-	CFLAGS="%{rpmcflags} -fPIC" \
-	VIM_VERSION="%{vimshv}"
+	CFLAGS="%{rpmcflags} -fPIC"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -56,17 +49,20 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	LIBDIR=%{_libdir} \
-	VIM_VERSION="%{vimshv}"
+	VIMDIR=%{_vimdatadir} \
+	VIM_VERSION="NONE"
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
+umask 002
 echo ':helptags %{_vimdatadir}/doc' | vim -e -s
 
 %postun
 /sbin/ldconfig
+umask 002
 echo ':helptags %{_vimdatadir}/doc' | vim -e -s
 
 %files
