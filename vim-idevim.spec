@@ -1,5 +1,5 @@
 Summary:	Control Gdb from inside Vim
-Summary(pl.UTF-8):   Obsługa gdb z VIMa
+Summary(pl.UTF-8):	Obsługa gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
 Release:	8
