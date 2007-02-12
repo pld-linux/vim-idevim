@@ -1,5 +1,5 @@
 Summary:	Control Gdb from inside Vim
-Summary(pl):	Obs³uga gdb z VIMa
+Summary(pl.UTF-8):   ObsÅ‚uga gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
 Release:	8
@@ -26,11 +26,11 @@ world. :-) You can access all the Gdb functions and features; on
 execution, the window is split, and the source position is shown in
 the top window, while the data appears in the bottom.
 
-%description -l pl
-To jest wtyczka i biblioteka, które zmieniaj± VIMa w najlepszy IDE na
-¶wiecie. :-) Daj± one dostêp do wszystkich funkcji Gdb. Podczas pracy
-debuggera okno jest podzielone: aktualna linia kodu ¼ród³owego pokazana
-jest w górnym oknie, a dane s± wy¶wietlane w dolnym.
+%description -l pl.UTF-8
+To jest wtyczka i biblioteka, ktÃ³re zmieniajÄ… VIMa w najlepszy IDE na
+Å›wiecie. :-) DajÄ… one dostÄ™p do wszystkich funkcji Gdb. Podczas pracy
+debuggera okno jest podzielone: aktualna linia kodu ÅºrÃ³dÅ‚owego pokazana
+jest w gÃ³rnym oknie, a dane sÄ… wyÅ›wietlane w dolnym.
 
 %prep
 %setup -qn gdbvim
