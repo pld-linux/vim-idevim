@@ -2,7 +2,7 @@ Summary:	Control Gdb from inside Vim
 Summary(pl.UTF-8):	Obsługa gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
-Release:	8
+Release:	9
 License:	GPL
 Group:		Applications/Editors/Vim
 #Source0:	http://vim.sourceforge.net/scripts/download.php?src_id=428
@@ -14,8 +14,8 @@ URL:		http://vim.sourceforge.net/scripts/script.php?script_id=168
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	vim
 # for _vimdatadir existence
-Requires:	vim >= 4:6.3.058-3
 Requires:	gdb
+Requires:	vim-rt >= 4:6.3.058-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_vimdatadir	%{_datadir}/vim/vimfiles
@@ -29,8 +29,8 @@ the top window, while the data appears in the bottom.
 %description -l pl.UTF-8
 To jest wtyczka i biblioteka, które zmieniają VIMa w najlepszy IDE na
 świecie. :-) Dają one dostęp do wszystkich funkcji Gdb. Podczas pracy
-debuggera okno jest podzielone: aktualna linia kodu źródłowego pokazana
-jest w górnym oknie, a dane są wyświetlane w dolnym.
+debuggera okno jest podzielone: aktualna linia kodu źródłowego
+pokazana jest w górnym oknie, a dane są wyświetlane w dolnym.
 
 %prep
 %setup -qn gdbvim
