@@ -2,7 +2,7 @@ Summary:	Control Gdb from inside Vim
 Summary(pl.UTF-8):	Obsługa gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
-Release:	9
+Release:	10
 License:	GPL
 Group:		Applications/Editors/Vim
 #Source0:	http://vim.sourceforge.net/scripts/download.php?src_id=428
