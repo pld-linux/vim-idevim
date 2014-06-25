@@ -57,13 +57,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-umask 002
-echo ':helptags %{_vimdatadir}/doc' | vim -e -s
+echo 'helptags %{_vimdatadir}/doc' | vim -e -s -V0 -R -n --noplugin
 
 %postun
 /sbin/ldconfig
-umask 002
-echo ':helptags %{_vimdatadir}/doc' | vim -e -s
+echo 'helptags %{_vimdatadir}/doc' | vim -e -s -V0 -R -n --noplugin
 
 %files
 %defattr(644,root,root,755)
