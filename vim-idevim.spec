@@ -34,8 +34,8 @@ pokazana jest w górnym oknie, a dane są wyświetlane w dolnym.
 
 %prep
 %setup -qn gdbvim
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %{__make} \
