@@ -1,0 +1,23 @@
+--- gdbvim/gdbv.h.orig	2001-12-17 00:00:00.000000000 +0000
++++ gdbvim/gdbv.h	2026-04-05 00:00:00.000000000 +0000
+@@ -1,6 +1,9 @@
+ #ifndef _GDBV_H
+ #define _GDBV_H
+
++#include <stdlib.h>
++#include <time.h>
++
+ #include <stdio.h>
+ #include <strings.h>
+ #include <string.h>
+--- gdbvim/gdbvcl.c.orig	2001-12-17 00:00:00.000000000 +0000
++++ gdbvim/gdbvcl.c	2026-04-05 00:00:00.000000000 +0000
+@@ -200,7 +200,7 @@
+
+
+
+-main(int argc, char **argv)
++int main(int argc, char **argv)
+ {
+
+ 	char *val;

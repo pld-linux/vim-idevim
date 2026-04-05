@@ -2,7 +2,7 @@ Summary:	Control Gdb from inside Vim
 Summary(pl.UTF-8):	Obsługa gdb z VIMa
 Name:		vim-idevim
 Version:	0.8
-Release:	10
+Release:	11
 License:	GPL
 Group:		Applications/Editors/Vim
 #Source0:	http://vim.sourceforge.net/scripts/download.php?src_id=428
@@ -10,6 +10,7 @@ Source0:	idevim.tgz
 # Source0-md5:	b63be71c432a7b67db75dde0afaaefc3
 Patch0:		%{name}-Makefile.patch
 Patch1:		%{name}-posix.patch
+Patch2:		%{name}-stdlib.patch
 URL:		http://vim.sourceforge.net/scripts/script.php?script_id=168
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	vim
@@ -36,6 +37,7 @@ pokazana jest w górnym oknie, a dane są wyświetlane w dolnym.
 %setup -qn gdbvim
 %patch -P0 -p1
 %patch -P1 -p1
+%patch -P2 -p1
 
 %build
 %{__make} \
